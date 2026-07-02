@@ -34,6 +34,7 @@ const FlowCard = lazy(() => import("@/components/showcase/FlowCard"));
 const InfoCards = lazy(() => import("@/components/showcase/InfoCards"));
 const CodePreviewModal = lazy(() => import("@/components/modals/CodePreviewModal"));
 const ImagePreviewModal = lazy(() => import("@/components/modals/ImagePreviewModal"));
+const CoderStudioModal = lazy(() => import("@/components/coder/CoderStudioModal"));
 const DeepResearchCard = lazy(() => import("@/components/chat/DeepResearchCard"));
 const ResearchNarration = lazy(() => import("@/components/research/ResearchNarration"));
 const LearnCard = lazy(() => import("@/components/learn/LearnCard"));
