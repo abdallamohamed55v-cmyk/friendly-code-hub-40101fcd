@@ -52,7 +52,16 @@ const SystemStatusPage = () => {
       setLoading(false);
 
       const { data: auth } = await supabase.auth.getUser();
-      if (auth?.user?.email && !cancelled) setEmail(auth.user.email);
+      if (auth?.user?.email && !cancelled) {
+        setEmail(auth.user.email);
+        const { data: existing } = await supabase
+          .from("status_subscribers")
+          .select("id")
+          .eq("channel", "email")
+          .eq("contact", auth.user.email)
+          .maybeSingle();
+        if (!cancelled && existing) setSubscribed(true);
+      }
     })();
     return () => {
       cancelled = true;
