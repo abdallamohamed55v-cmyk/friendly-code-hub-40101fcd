@@ -15,6 +15,7 @@ interface Props {
   open: boolean;
   onClose: () => void;
   initialFiles: ProjectFile[];
+  filesOnly?: boolean;
 }
 
 interface HistoryLine {
@@ -105,7 +106,7 @@ function loadPyodide(): Promise<any> {
   return pyodidePromise;
 }
 
-const CoderStudioModal = ({ open, onClose, initialFiles }: Props) => {
+const CoderStudioModal = ({ open, onClose, initialFiles, filesOnly }: Props) => {
   const [tab, setTab] = useState<Tab>("files");
   const fs = useVirtualFS(initialFiles);
   const [selected, setSelected] = useState<string>(initialFiles[0]?.path || "");
@@ -337,26 +338,28 @@ const CoderStudioModal = ({ open, onClose, initialFiles }: Props) => {
           </button>
         </div>
 
-        {/* Tabs */}
-        <div className="flex items-center gap-1 px-2 sm:px-3 h-11 border-b border-white/10 bg-black/20 overflow-x-auto">
-          {([
-            { id: "files", label: "الملفات", icon: FolderTree },
-            { id: "terminal", label: "التيرمينال", icon: TerminalIcon },
-            { id: "python", label: "Python", icon: FileCode2 },
-            { id: "integrations", label: "الربط", icon: Plug },
-          ] as { id: Tab; label: string; icon: any }[]).map((t) => (
-            <button
-              key={t.id}
-              onClick={() => setTab(t.id)}
-              className={`inline-flex items-center gap-1.5 px-3 h-8 rounded-lg text-[12.5px] font-medium whitespace-nowrap transition-colors ${
-                tab === t.id ? "bg-white text-black" : "text-white/70 hover:bg-white/10"
-              }`}
-            >
-              <t.icon className="w-3.5 h-3.5" />
-              {t.label}
-            </button>
-          ))}
-        </div>
+        {/* Tabs (hidden in filesOnly mode) */}
+        {!filesOnly && (
+          <div className="flex items-center gap-1 px-2 sm:px-3 h-11 border-b border-white/10 bg-black/20 overflow-x-auto">
+            {([
+              { id: "files", label: "الملفات", icon: FolderTree },
+              { id: "terminal", label: "التيرمينال", icon: TerminalIcon },
+              { id: "python", label: "Python", icon: FileCode2 },
+              { id: "integrations", label: "الربط", icon: Plug },
+            ] as { id: Tab; label: string; icon: any }[]).map((t) => (
+              <button
+                key={t.id}
+                onClick={() => setTab(t.id)}
+                className={`inline-flex items-center gap-1.5 px-3 h-8 rounded-lg text-[12.5px] font-medium whitespace-nowrap transition-colors ${
+                  tab === t.id ? "bg-white text-black" : "text-white/70 hover:bg-white/10"
+                }`}
+              >
+                <t.icon className="w-3.5 h-3.5" />
+                {t.label}
+              </button>
+            ))}
+          </div>
+        )}
 
         {/* Body */}
         <div className="flex-1 min-h-0 overflow-hidden">
