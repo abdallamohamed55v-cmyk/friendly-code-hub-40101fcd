@@ -940,6 +940,9 @@ const ChatMessage = ({
     }
   }, [projectFiles, content]);
 
+  const [studioOpen, setStudioOpen] = useState(false);
+
+
 
   // Other member's message → render on LEFT (assistant side) with avatar + name
   if (role === "user" && isOtherMember) {
