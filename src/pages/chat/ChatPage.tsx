@@ -158,6 +158,7 @@ const ChatPage = () => {
     setMegsyOsIntroOpen,
   } = useChatHeaderUi();
   const [sidebarCollapsed] = useSidebarCollapsed();
+  const [kimiCoderPrompt, setKimiCoderPrompt] = useState<string | null>(null);
   const [sidebarHovered, setSidebarHovered] = useState(false);
   const sidebarHoverTimer = useRef<number | null>(null);
   const isSidebarExpanded = !sidebarCollapsed || sidebarHovered;
