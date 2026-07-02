@@ -55,6 +55,7 @@ const LandingPage = lazy(() => import("./pages/marketing/LandingPage"));
 const AuthPage = lazy(() => import("./pages/auth/AuthPage"));
 const OAuthCallbackPage = lazy(() => import("./pages/auth/OAuthCallbackPage"));
 const ChatPage = lazy(() => import("./pages/chat/ChatPage"));
+const PublishedSitePage = lazy(() => import("./pages/PublishedSitePage"));
 const LandingGalleryPage = lazy(() => import("./pages/landing-gallery/LandingGalleryPage"));
 const ServiceLandingPage = lazy(() => import("./pages/landings/ServiceLandingPage"));
 
@@ -648,6 +649,9 @@ const App = () => {
                           <Route path="/" element={<RootRoute authedElement={<ChatPage key={currentUserId} />} />} />
                           <Route path="/slides/preview/:id" element={<SlidesPreviewPage />} />
                           <Route path="/slides/file-preview/:id" element={<SlidesFilePreviewPage />} />
+                          <Route path="/s/:slug" element={<PublishedSitePage />} />
+
+
 
                           <Route path="/landing" element={<LandingPage />} />
                           <Route path="/home" element={<LandingPage />} />
