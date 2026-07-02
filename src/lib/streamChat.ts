@@ -386,7 +386,7 @@ export async function streamChat({
       return;
     }
     if (e?.message === "IDLE_TIMEOUT") {
-      onError?.("Alibaba/DashScope took too long to start streaming.");
+      onError?.("Chat took too long to start streaming. Please try again.");
       await onDone();
       return;
     }
