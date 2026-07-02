@@ -5,7 +5,7 @@ import {
   X, FileCode2, Terminal as TerminalIcon, Play, Plug, Github,
   Plus, Trash2, Save, FolderTree, Loader2, Check, SkipForward,
 } from "lucide-react";
-import type { ProjectFile } from "@/lib/n";
+import type { ProjectFile } from "@/lib/extractProjectFiles";
 import ConnectorsDialog from "@/components/integrations/ConnectorsDialog";
 import { toast } from "sonner";
 
