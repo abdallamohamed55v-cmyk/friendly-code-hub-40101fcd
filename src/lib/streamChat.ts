@@ -253,7 +253,7 @@ export async function streamChat({
       return;
     }
     if (resp.status === 503) {
-      onError?.("Alibaba/DashScope key is not configured for chat.");
+      onError?.("Chat service is temporarily unavailable. Please try again.");
       await onDone();
       return;
     }
@@ -262,7 +262,7 @@ export async function streamChat({
       const msg =
         errorText ||
         (resp.status >= 500
-          ? "Alibaba/DashScope request failed before streaming."
+          ? "Chat request failed before streaming. Please try again."
           : "Chat request failed.");
       onError?.(msg);
       await onDone();
