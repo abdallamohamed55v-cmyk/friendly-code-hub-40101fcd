@@ -735,7 +735,7 @@ const ChatPage = () => {
     }
 
     // ── Coder mode: hand off to the Kimi Coder agent panel (plan → parallel tools → observe) ──
-    if (chatMode === "coder") {
+    if (chatMode === "code") {
       setKimiCoderPrompt(text);
       setInput("");
       setAttachedFiles([]);
