@@ -11,6 +11,7 @@ import {
   Pencil,
   Ellipsis,
   ChevronDown,
+  Terminal as TerminalIcon,
 } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { motion, AnimatePresence } from "framer-motion";
