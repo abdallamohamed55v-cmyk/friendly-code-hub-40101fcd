@@ -11,6 +11,7 @@ import {
   Pencil,
   Ellipsis,
   ChevronDown,
+  Terminal as TerminalIcon,
 } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { motion, AnimatePresence } from "framer-motion";
@@ -34,6 +35,7 @@ const FlowCard = lazy(() => import("@/components/showcase/FlowCard"));
 const InfoCards = lazy(() => import("@/components/showcase/InfoCards"));
 const CodePreviewModal = lazy(() => import("@/components/modals/CodePreviewModal"));
 const ImagePreviewModal = lazy(() => import("@/components/modals/ImagePreviewModal"));
+const CoderStudioModal = lazy(() => import("@/components/coder/CoderStudioModal"));
 const DeepResearchCard = lazy(() => import("@/components/chat/DeepResearchCard"));
 const ResearchNarration = lazy(() => import("@/components/research/ResearchNarration"));
 const LearnCard = lazy(() => import("@/components/learn/LearnCard"));
@@ -939,6 +941,9 @@ const ChatMessage = ({
     }
   }, [projectFiles, content]);
 
+  const [studioOpen, setStudioOpen] = useState(false);
+
+
 
   // Other member's message → render on LEFT (assistant side) with avatar + name
   if (role === "user" && isOtherMember) {
@@ -1351,8 +1356,24 @@ const ChatMessage = ({
                     </span>
                   </span>
                 </button>
+                <button
+                  type="button"
+                  onClick={() => setStudioOpen(true)}
+                  className="group inline-flex items-center gap-3 sm:w-56 rounded-2xl border border-white/15 bg-gradient-to-br from-[#1a1a2e] to-[#0f0f1a] px-4 py-3 text-left shadow-sm hover:shadow-md hover:border-emerald-400/60 transition-all"
+                >
+                  <span className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 group-hover:bg-emerald-500 group-hover:text-black transition-colors">
+                    <TerminalIcon className="w-4 h-4" />
+                  </span>
+                  <span className="flex-1 min-w-0">
+                    <span className="block text-[13px] font-bold text-white">استوديو كودر</span>
+                    <span className="block text-[11px] text-white/60 truncate">تحرير · تيرمينال · Python</span>
+                  </span>
+                </button>
               </div>
             )}
+
+
+
 
 
 
@@ -1644,6 +1665,14 @@ const ChatMessage = ({
 
           {previewImageUrl && (
             <ImagePreviewModal url={previewImageUrl} onClose={() => setPreviewImageUrl(null)} />
+          )}
+
+          {studioOpen && (
+            <CoderStudioModal
+              open={studioOpen}
+              onClose={() => setStudioOpen(false)}
+              initialFiles={projectFiles}
+            />
           )}
         </Suspense>
       </MessageContent>
