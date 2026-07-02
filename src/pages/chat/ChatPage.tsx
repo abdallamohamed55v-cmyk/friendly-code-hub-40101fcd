@@ -734,6 +734,15 @@ const ChatPage = () => {
       return;
     }
 
+    // ── Coder mode: hand off to the Kimi Coder agent panel (plan → parallel tools → observe) ──
+    if (chatMode === "coder") {
+      setKimiCoderPrompt(text);
+      setInput("");
+      setAttachedFiles([]);
+      return;
+    }
+
+
     // Premium modes require an authenticated user. Normal/learning/shopping
     // chat stays fully public so anyone can try the product without sign-up.
     const PROTECTED_MODES: ChatMode[] = [
