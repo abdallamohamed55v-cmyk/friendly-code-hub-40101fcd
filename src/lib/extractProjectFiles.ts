@@ -93,6 +93,12 @@ export function buildProjectPreviewHtml(files: ProjectFile[]): string | null {
   if (!files.length) return null;
   const html = files.find((f) => /\.html?$/i.test(f.path)) || files.find((f) => f.lang === "html");
   if (!html) return null;
+  // Vite/React-style entry HTML references .tsx/.jsx/.ts modules that the
+  // browser cannot execute directly. Fall back to the bundle view so users
+  // don't see a blank white iframe.
+  if (/<script\b[^>]*(?:type=["']module["'][^>]*src=|src=["'][^"']+\.(?:tsx|jsx|ts)["'])/i.test(html.content)) {
+    return null;
+  }
   const byName = new Map<string, ProjectFile>();
   for (const f of files) byName.set(f.path.split("/").pop() || f.path, f);
 
