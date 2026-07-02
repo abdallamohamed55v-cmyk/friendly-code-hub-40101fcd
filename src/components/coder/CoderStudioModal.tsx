@@ -106,7 +106,7 @@ function loadPyodide(): Promise<any> {
   return pyodidePromise;
 }
 
-const CoderStudioModal = ({ open, onClose, initialFiles }: Props) => {
+const CoderStudioModal = ({ open, onClose, initialFiles, filesOnly }: Props) => {
   const [tab, setTab] = useState<Tab>("files");
   const fs = useVirtualFS(initialFiles);
   const [selected, setSelected] = useState<string>(initialFiles[0]?.path || "");
