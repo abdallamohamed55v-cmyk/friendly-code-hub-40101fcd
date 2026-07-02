@@ -1326,47 +1326,17 @@ const ChatMessage = ({
                 </button>
                 <button
                   type="button"
-                  onClick={publishProjectNow}
-                  disabled={publishState.status === "loading"}
-                  className="group inline-flex items-center gap-3 sm:w-64 rounded-2xl border border-white/80 bg-white px-4 py-3 text-left shadow-sm hover:shadow-md hover:bg-white/90 transition-all disabled:opacity-60"
-                >
-                  <span className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-black text-white">
-                    {publishState.status === "loading" ? (
-                      <span className="w-3.5 h-3.5 border-2 border-white/40 border-t-white rounded-full animate-spin" />
-                    ) : publishState.status === "done" ? (
-                      <Check className="w-4 h-4" />
-                    ) : (
-                      <Play className="w-4 h-4" fill="currentColor" />
-                    )}
-                  </span>
-                  <span className="flex-1 min-w-0">
-                    <span className="block text-[13px] font-bold text-black">
-                      {publishState.status === "loading"
-                        ? "جاري النشر…"
-                        : publishState.status === "done"
-                        ? "تم النشر ✓"
-                        : "نشر المشروع"}
-                    </span>
-                    <span className="block text-[11px] text-black/60 truncate">
-                      {publishState.status === "done"
-                        ? publishState.url.replace(/^https?:\/\//, "")
-                        : publishState.status === "error"
-                        ? publishState.message
-                        : "رابط عام يعمل للأبد"}
-                    </span>
-                  </span>
-                </button>
-                <button
-                  type="button"
                   onClick={() => setStudioOpen(true)}
-                  className="group inline-flex items-center gap-3 sm:w-56 rounded-2xl border border-white/15 bg-gradient-to-br from-[#1a1a2e] to-[#0f0f1a] px-4 py-3 text-left shadow-sm hover:shadow-md hover:border-emerald-400/60 transition-all"
+                  className="group inline-flex items-center gap-3 flex-1 rounded-2xl border border-border/60 bg-gradient-to-br from-[#0a0a0a] to-[#1a1a1a] px-4 py-3 text-left shadow-sm hover:shadow-md hover:border-emerald-400/60 transition-all"
                 >
                   <span className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 group-hover:bg-emerald-500 group-hover:text-black transition-colors">
-                    <TerminalIcon className="w-4 h-4" />
+                    <FolderTree className="w-4 h-4" />
                   </span>
                   <span className="flex-1 min-w-0">
-                    <span className="block text-[13px] font-bold text-white">استوديو كودر</span>
-                    <span className="block text-[11px] text-white/60 truncate">تحرير · تيرمينال · Python</span>
+                    <span className="block text-[13px] font-bold text-white">الملفات</span>
+                    <span className="block text-[11px] text-white/60 truncate">
+                      {projectFiles.length} ملف · تصفح وحرر
+                    </span>
                   </span>
                 </button>
               </div>
