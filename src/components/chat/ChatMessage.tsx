@@ -916,6 +916,30 @@ const ChatMessage = ({
     setPreviewCode({ code: entry.content, lang: entry.lang });
   }, [projectFiles]);
 
+  const [publishState, setPublishState] = useState<
+    { status: "idle" } | { status: "loading" } | { status: "done"; url: string } | { status: "error"; message: string }
+  >({ status: "idle" });
+  const publishProjectNow = useCallback(async () => {
+    if (!projectFiles.length) return;
+    setPublishState({ status: "loading" });
+    try {
+      const { publishProject } = await import("@/lib/publishProject");
+      const firstLine = (content || "").split("\n").find((l) => l.trim())?.slice(0, 80);
+      const res = await publishProject(projectFiles, {
+        title: firstLine || "Megsy Project",
+      });
+      setPublishState({ status: "done", url: res.url });
+      try {
+        await navigator.clipboard.writeText(res.url);
+      } catch {}
+      window.open(res.url, "_blank", "noopener,noreferrer");
+    } catch (e: unknown) {
+      const message = e instanceof Error ? e.message : "فشل النشر";
+      setPublishState({ status: "error", message });
+    }
+  }, [projectFiles, content]);
+
+
   // Other member's message → render on LEFT (assistant side) with avatar + name
   if (role === "user" && isOtherMember) {
     const initial = (senderName || "?")[0]?.toUpperCase();
