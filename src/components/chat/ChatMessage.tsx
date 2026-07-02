@@ -903,6 +903,19 @@ const ChatMessage = ({
   );
   const [previewImageUrl, setPreviewImageUrl] = useState<string | null>(null);
 
+  // Project-level preview button for Coder replies (multi-file outputs).
+  const projectFiles = useMemo(
+    () => (role === "assistant" && !isStreaming ? extractProjectFiles(content) : []),
+    [role, isStreaming, content],
+  );
+  const hasProjectPreview = projectFiles.length >= 2;
+  const openProjectPreview = useCallback(() => {
+    if (!projectFiles.length) return;
+    const entry =
+      projectFiles.find((f) => /\.(html?|tsx|jsx)$/i.test(f.path)) || projectFiles[0];
+    setPreviewCode({ code: entry.content, lang: entry.lang });
+  }, [projectFiles]);
+
   // Other member's message → render on LEFT (assistant side) with avatar + name
   if (role === "user" && isOtherMember) {
     const initial = (senderName || "?")[0]?.toUpperCase();
