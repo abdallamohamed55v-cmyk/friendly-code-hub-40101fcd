@@ -98,6 +98,7 @@ import { ChatDialogs } from "./components/ChatDialogs";
 import { ChatHiddenFileInputs } from "./components/ChatHiddenFileInputs";
 import { MegsyOsIntro } from "./components/MegsyOsIntro";
 import { ChatGlobalModals } from "./components/ChatGlobalModals";
+import KimiCoderPanel from "@/components/coder/KimiCoderPanel";
 import { MobileChatHeaderMount } from "./components/MobileChatHeaderMount";
 import { DesktopChatHeader } from "./components/DesktopChatHeader";
 import { ChatMessagesArea } from "./components/ChatMessagesArea";
