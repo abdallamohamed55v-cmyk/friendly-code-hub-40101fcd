@@ -21,10 +21,25 @@ interface ChatBody {
 // Confirmed free-quota chains (Alibaba Bailian).
 const TEXT_CHAIN = ["qwen-max", "qwen-plus", "qwen-turbo"];
 const VISION_CHAIN = ["qwen3-vl-plus", "qwen-vl-max", "qwen-vl-plus", "qwen-vl-max-latest"];
-const CODER_CHAIN = ["qwen3-coder-plus", "qwen3-coder-flash", "qwen-max"];
+// Coder mode → Kimi 2.6 (Moonshot K2) hosted on Alibaba Bailian, with fallbacks.
+const CODER_CHAIN = [
+  "Moonshot-Kimi-K2-Instruct-2.6",
+  "Moonshot-Kimi-K2-Instruct",
+  "moonshot-kimi-k2-instruct",
+  "qwen3-coder-plus",
+  "qwen3-coder-flash",
+  "qwen-max",
+];
 // Third-party models hosted on Bailian marketplace.
 const GLM_CHAIN = ["glm-4.6", "glm-4-plus", "glm-4", "qwen-max"];
-const KIMI_CHAIN = ["moonshot-kimi-k2-instruct", "moonshot-v1-32k", "moonshot-v1-8k", "qwen-max"];
+const KIMI_CHAIN = [
+  "Moonshot-Kimi-K2-Instruct-2.6",
+  "Moonshot-Kimi-K2-Instruct",
+  "moonshot-kimi-k2-instruct",
+  "moonshot-v1-32k",
+  "moonshot-v1-8k",
+  "qwen-max",
+];
 
 function hasMultimodalContent(messages: Array<{ role: string; content: any }>): boolean {
   for (const m of messages) {
