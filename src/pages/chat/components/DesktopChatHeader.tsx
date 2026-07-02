@@ -1,3 +1,4 @@
+import { Sparkles } from "lucide-react";
 import { MobileSidebarButton } from "@/components/shared/MobileSidebarButton";
 import { ChatOptionsDropdown } from "./ChatOptionsDropdown";
 
@@ -40,7 +41,7 @@ interface DesktopChatHeaderProps {
  * minimal controls on the right. Desktop-only styling — mobile branch is untouched.
  */
 export function DesktopChatHeader(props: DesktopChatHeaderProps) {
-  const { chatMode, hasConversation, setSidebarOpen, conversationId } = props;
+  const { chatMode, hasConversation, setSidebarOpen, conversationId, navigate } = props;
   const hideOptions =
     chatMode === "deep-research" || chatMode === "slides" || chatMode === "slides-images";
 
@@ -60,6 +61,25 @@ export function DesktopChatHeader(props: DesktopChatHeaderProps) {
       <div className="flex-1" />
 
       <div className="flex items-center gap-2">
+        <button
+          type="button"
+          onClick={() => navigate("/pricing")}
+          aria-label="Get Plus"
+          className="relative inline-flex items-center gap-1.5 h-9 px-3.5 rounded-full text-[12.5px] font-bold shrink-0 transition-all hover:-translate-y-[1px] active:translate-y-[1px] active:shadow-none bg-black text-white border border-black hover:bg-white hover:text-black"
+          style={{
+            boxShadow:
+              "inset 1px 1px 1px 0 rgba(255,255,255,0.18), inset -1px -1px 1px 0 rgba(255,255,255,0.08), 0 4px 12px rgba(0,0,0,0.18)",
+          }}
+        >
+          <span
+            aria-hidden
+            className="inline-flex items-center justify-center w-4 h-4 rounded-full bg-white text-black shrink-0"
+          >
+            <Sparkles className="w-3 h-3" strokeWidth={2.5} />
+          </span>
+          <span>Get Plus</span>
+        </button>
+
         {hasConversation && conversationId && !hideOptions && (
           <ChatOptionsDropdown variant="mobile" {...props} />
         )}
