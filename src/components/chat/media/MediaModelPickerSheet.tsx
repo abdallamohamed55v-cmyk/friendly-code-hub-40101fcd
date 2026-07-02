@@ -100,6 +100,10 @@ export default function MediaModelPickerSheet({
                         loading="lazy"
                         className="w-full h-full object-cover"
                       />
+                    ) : hasBrandIcon(m.name, m.provider) ? (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <BrandIcon name={m.name} provider={m.provider} size={56} variant="avatar" />
+                      </div>
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-brand-action">
                         {mode === "video" ? (
@@ -111,10 +115,11 @@ export default function MediaModelPickerSheet({
                     )}
                   </div>
                   <div className="flex items-start justify-between gap-2">
-                    <div className="min-w-0 flex-1">
-                      <div
-                        className="font-black text-sm truncate text-foreground"
-                      >
+                    <div className="min-w-0 flex-1 flex items-center gap-1.5">
+                      {hasBrandIcon(m.name, m.provider) && (
+                        <BrandIcon name={m.name} provider={m.provider} size={16} variant="mono" className="shrink-0 opacity-80" />
+                      )}
+                      <div className="font-black text-sm truncate text-foreground">
                         {m.name}
                       </div>
                     </div>
