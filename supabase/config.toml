@@ -23,3 +23,6 @@ verify_jwt = false
 
 [functions.telegram-tasks-bot]
 verify_jwt = false
+
+[functions.kimi-coder]
+verify_jwt = false
