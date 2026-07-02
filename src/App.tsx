@@ -55,6 +55,7 @@ const LandingPage = lazy(() => import("./pages/marketing/LandingPage"));
 const AuthPage = lazy(() => import("./pages/auth/AuthPage"));
 const OAuthCallbackPage = lazy(() => import("./pages/auth/OAuthCallbackPage"));
 const ChatPage = lazy(() => import("./pages/chat/ChatPage"));
+const PublishedSitePage = lazy(() => import("./pages/PublishedSitePage"));
 const LandingGalleryPage = lazy(() => import("./pages/landing-gallery/LandingGalleryPage"));
 const ServiceLandingPage = lazy(() => import("./pages/landings/ServiceLandingPage"));
 
