@@ -342,6 +342,8 @@ export function buildCustomSystem(
 
   if (chatMode === "learning") {
     parts.push(LEARNING_PROMPT);
+  } else if (chatMode === "code") {
+    parts.push(CODER_PROMPT);
   }
 
   const flavor = flavorForModel(selectedModelId);
@@ -353,7 +355,7 @@ export function buildCustomSystem(
 
   // Always append the depth + language rule so models never collapse
   // into terse replies regardless of which voice was picked.
-  if (chatMode !== "learning") parts.push(DEPTH_RULE);
+  if (chatMode !== "learning" && chatMode !== "code") parts.push(DEPTH_RULE);
 
   return parts.join("\n\n");
 }
