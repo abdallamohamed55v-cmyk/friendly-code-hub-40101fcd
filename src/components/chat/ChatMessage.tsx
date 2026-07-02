@@ -1643,6 +1643,7 @@ const ChatMessage = ({
               open={studioOpen}
               onClose={() => setStudioOpen(false)}
               initialFiles={projectFiles}
+              filesOnly
             />
           )}
         </Suspense>
