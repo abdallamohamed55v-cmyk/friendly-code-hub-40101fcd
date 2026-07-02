@@ -15,6 +15,7 @@ interface Props {
   open: boolean;
   onClose: () => void;
   initialFiles: ProjectFile[];
+  filesOnly?: boolean;
 }
 
 interface HistoryLine {
