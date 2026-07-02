@@ -69,7 +69,8 @@ function useVirtualFS(initial: ProjectFile[]) {
         copy[idx] = { ...copy[idx], content };
         return copy;
       }
-      return [...prev, { path, content }];
+      const ext = (path.split(".").pop() || "txt").toLowerCase();
+      return [...prev, { path, content, lang: ext }];
     });
   }, [normalize]);
 
