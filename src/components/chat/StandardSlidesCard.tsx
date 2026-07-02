@@ -137,8 +137,9 @@ const StandardSlidesCard = ({ title, url, colors, chatName }: Props) => {
         <a
           href={url}
           download
-          className="slides-card-button slides-card-button--secondary flex-1 flex items-center justify-center py-3 text-sm font-medium active:scale-[0.98]"
+          className="slides-card-button slides-card-button--secondary flex-1 flex items-center justify-center gap-2 py-3 text-sm font-medium active:scale-[0.98]"
         >
+          <Download className="w-4 h-4" />
           Download
         </a>
       </div>
