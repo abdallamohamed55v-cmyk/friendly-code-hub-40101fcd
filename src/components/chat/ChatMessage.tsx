@@ -1355,8 +1355,24 @@ const ChatMessage = ({
                     </span>
                   </span>
                 </button>
+                <button
+                  type="button"
+                  onClick={() => setStudioOpen(true)}
+                  className="group inline-flex items-center gap-3 sm:w-56 rounded-2xl border border-white/15 bg-gradient-to-br from-[#1a1a2e] to-[#0f0f1a] px-4 py-3 text-left shadow-sm hover:shadow-md hover:border-emerald-400/60 transition-all"
+                >
+                  <span className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 group-hover:bg-emerald-500 group-hover:text-black transition-colors">
+                    <TerminalIcon className="w-4 h-4" />
+                  </span>
+                  <span className="flex-1 min-w-0">
+                    <span className="block text-[13px] font-bold text-white">استوديو كودر</span>
+                    <span className="block text-[11px] text-white/60 truncate">تحرير · تيرمينال · Python</span>
+                  </span>
+                </button>
               </div>
             )}
+
+
+
 
 
 
