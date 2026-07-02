@@ -475,16 +475,12 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
 
 // Root route:
 // - Signed-in users → ChatPage.
-// - Guests on desktop → LandingPage.
-// - Guests on mobile → ChatPage (landing is still reachable directly via /landing).
+// - Guests (desktop AND mobile) → LandingPage. This prevents the "empty black
+//   chat page" first-open experience for guests on phones/PWA installs.
+//   Chat is still reachable directly via /chat once signed in.
 const RootRoute = ({ authedElement }: { authedElement: React.ReactNode }) => {
   bootstrapAuth();
   const [state, setState] = useState(cachedAuthState);
-  const [isMobile, setIsMobile] = useState(() =>
-    typeof window !== "undefined"
-      ? window.matchMedia("(max-width: 767px)").matches
-      : false,
-  );
   useEffect(() => {
     setState(cachedAuthState);
     const cb = (s: typeof cachedAuthState) => setState(s);
@@ -493,16 +489,9 @@ const RootRoute = ({ authedElement }: { authedElement: React.ReactNode }) => {
       authListeners.delete(cb);
     };
   }, []);
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width: 767px)");
-    const onChange = (e: MediaQueryListEvent) => setIsMobile(e.matches);
-    setIsMobile(mq.matches);
-    mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
-  }, []);
   if (!state.resolved) return <LazyFallback />;
   if (state.authenticated) return <>{authedElement}</>;
-  return isMobile ? <>{authedElement}</> : <LandingPage />;
+  return <LandingPage />;
 };
 
 
