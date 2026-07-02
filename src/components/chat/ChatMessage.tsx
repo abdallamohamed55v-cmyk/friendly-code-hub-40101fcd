@@ -1666,6 +1666,14 @@ const ChatMessage = ({
           {previewImageUrl && (
             <ImagePreviewModal url={previewImageUrl} onClose={() => setPreviewImageUrl(null)} />
           )}
+
+          {studioOpen && (
+            <CoderStudioModal
+              open={studioOpen}
+              onClose={() => setStudioOpen(false)}
+              initialFiles={projectFiles}
+            />
+          )}
         </Suspense>
       </MessageContent>
     </Message>
