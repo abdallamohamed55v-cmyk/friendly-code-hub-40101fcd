@@ -5,6 +5,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { useDynamicModels } from "@/hooks/useModels";
 import { Check, Image as ImageIcon, Video as VideoIcon } from "lucide-react";
 import { glassModelMenu, glassModelMenuStyle } from "@/components/model-picker/glassModelMenuStyles";
+import { BrandIcon, hasBrandIcon } from "@/components/chat/media/BrandIcon";
 
 export interface MediaModelChoice {
   slug: string;
