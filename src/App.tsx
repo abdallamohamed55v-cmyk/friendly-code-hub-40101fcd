@@ -649,6 +649,9 @@ const App = () => {
                           <Route path="/" element={<RootRoute authedElement={<ChatPage key={currentUserId} />} />} />
                           <Route path="/slides/preview/:id" element={<SlidesPreviewPage />} />
                           <Route path="/slides/file-preview/:id" element={<SlidesFilePreviewPage />} />
+                          <Route path="/s/:slug" element={<PublishedSitePage />} />
+
+
 
                           <Route path="/landing" element={<LandingPage />} />
                           <Route path="/home" element={<LandingPage />} />
