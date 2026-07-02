@@ -52,7 +52,16 @@ const SystemStatusPage = () => {
       setLoading(false);
 
       const { data: auth } = await supabase.auth.getUser();
-      if (auth?.user?.email && !cancelled) setEmail(auth.user.email);
+      if (auth?.user?.email && !cancelled) {
+        setEmail(auth.user.email);
+        const { data: existing } = await supabase
+          .from("status_subscribers")
+          .select("id")
+          .eq("channel", "email")
+          .eq("contact", auth.user.email)
+          .maybeSingle();
+        if (!cancelled && existing) setSubscribed(true);
+      }
     })();
     return () => {
       cancelled = true;
@@ -87,8 +96,14 @@ const SystemStatusPage = () => {
   const allOperational = currentlyDown.length === 0;
 
   const handleSubscribe = async () => {
-    if (!email.trim()) {
+    if (subscribed) return;
+    const target = email.trim();
+    if (!target) {
       setShowSubscribe(true);
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(target)) {
+      toast.error("Please enter a valid email address");
       return;
     }
     setSubmitting(true);
@@ -100,11 +115,21 @@ const SystemStatusPage = () => {
     }
     const { error } = await supabase.from("status_subscribers").insert({
       channel: "email",
-      contact: email.trim(),
+      contact: target,
     });
     setSubmitting(false);
     if (error) {
-      toast.error(error.message.includes("duplicate") ? "Already subscribed" : "Could not subscribe");
+      const dup =
+        error.code === "23505" ||
+        error.message?.toLowerCase().includes("duplicate") ||
+        error.message?.toLowerCase().includes("unique");
+      if (dup) {
+        setSubscribed(true);
+        setShowSubscribe(false);
+        toast.success("You're already subscribed");
+      } else {
+        toast.error(error.message || "Could not subscribe");
+      }
     } else {
       setSubscribed(true);
       setShowSubscribe(false);
@@ -186,6 +211,14 @@ const SystemStatusPage = () => {
                 placeholder="you@example.com"
                 className="flex-1 rounded-xl border border-border/70 bg-background/40 px-3.5 py-2.5 text-[14px] text-foreground outline-none placeholder:text-muted-foreground focus:border-foreground/40 transition"
               />
+              <button
+                type="button"
+                onClick={() => setShowSubscribe(false)}
+                disabled={submitting}
+                className="inline-flex items-center h-11 px-4 text-[13px] font-medium rounded-xl border border-border/70 text-foreground hover:bg-foreground/[0.06] disabled:opacity-60 transition"
+              >
+                Cancel
+              </button>
               <button
                 type="button"
                 onClick={handleSubscribe}

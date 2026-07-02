@@ -229,9 +229,9 @@ export default function MobileChatHeader({
         >
           <span
             aria-hidden
-            className="inline-flex items-center justify-center w-4 h-4 rounded-full bg-white text-black shrink-0"
+            className="inline-flex items-center justify-center w-4 h-4 rounded-full bg-white shrink-0"
           >
-            <Star className="w-2.5 h-2.5 fill-current" strokeWidth={2.5} />
+            <MegsyStar size={11} static className="text-black" />
           </span>
           <span>Get Plus</span>
         </Link>
