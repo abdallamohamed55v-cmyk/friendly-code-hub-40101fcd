@@ -96,8 +96,14 @@ const SystemStatusPage = () => {
   const allOperational = currentlyDown.length === 0;
 
   const handleSubscribe = async () => {
-    if (!email.trim()) {
+    if (subscribed) return;
+    const target = email.trim();
+    if (!target) {
       setShowSubscribe(true);
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(target)) {
+      toast.error("Please enter a valid email address");
       return;
     }
     setSubmitting(true);
@@ -109,11 +115,21 @@ const SystemStatusPage = () => {
     }
     const { error } = await supabase.from("status_subscribers").insert({
       channel: "email",
-      contact: email.trim(),
+      contact: target,
     });
     setSubmitting(false);
     if (error) {
-      toast.error(error.message.includes("duplicate") ? "Already subscribed" : "Could not subscribe");
+      const dup =
+        error.code === "23505" ||
+        error.message?.toLowerCase().includes("duplicate") ||
+        error.message?.toLowerCase().includes("unique");
+      if (dup) {
+        setSubscribed(true);
+        setShowSubscribe(false);
+        toast.success("You're already subscribed");
+      } else {
+        toast.error(error.message || "Could not subscribe");
+      }
     } else {
       setSubscribed(true);
       setShowSubscribe(false);
