@@ -98,6 +98,7 @@ import { ChatDialogs } from "./components/ChatDialogs";
 import { ChatHiddenFileInputs } from "./components/ChatHiddenFileInputs";
 import { MegsyOsIntro } from "./components/MegsyOsIntro";
 import { ChatGlobalModals } from "./components/ChatGlobalModals";
+import KimiCoderPanel from "@/components/coder/KimiCoderPanel";
 import { MobileChatHeaderMount } from "./components/MobileChatHeaderMount";
 import { DesktopChatHeader } from "./components/DesktopChatHeader";
 import { ChatMessagesArea } from "./components/ChatMessagesArea";
@@ -157,6 +158,7 @@ const ChatPage = () => {
     setMegsyOsIntroOpen,
   } = useChatHeaderUi();
   const [sidebarCollapsed] = useSidebarCollapsed();
+  const [kimiCoderPrompt, setKimiCoderPrompt] = useState<string | null>(null);
   const [sidebarHovered, setSidebarHovered] = useState(false);
   const sidebarHoverTimer = useRef<number | null>(null);
   const isSidebarExpanded = !sidebarCollapsed || sidebarHovered;
@@ -731,6 +733,15 @@ const ChatPage = () => {
       );
       return;
     }
+
+    // ── Coder mode: hand off to the Kimi Coder agent panel (plan → parallel tools → observe) ──
+    if (chatMode === "code") {
+      setKimiCoderPrompt(text);
+      setInput("");
+      setAttachedFiles([]);
+      return;
+    }
+
 
     // Premium modes require an authenticated user. Normal/learning/shopping
     // chat stays fully public so anyone can try the product without sign-up.
@@ -1917,6 +1928,12 @@ const ChatPage = () => {
         navigate={zoneNavigate}
         handleModeChange={handleModeChange}
       />
+      {kimiCoderPrompt && (
+        <KimiCoderPanel
+          prompt={kimiCoderPrompt}
+          onClose={() => setKimiCoderPrompt(null)}
+        />
+      )}
     </>
   );
 };
