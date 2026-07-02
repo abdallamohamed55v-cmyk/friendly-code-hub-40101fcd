@@ -119,8 +119,13 @@ export async function publishProject(
   if (!user) throw new Error("سجّل الدخول أولاً لتتمكن من النشر");
 
   const title = (opts.title || "Megsy Project").slice(0, 120);
+  // Priority: 1) plain static HTML site (buildProjectPreviewHtml returns non-null
+  // only for runnable index.html) → 2) React/Vite project → real in-browser runtime
+  // → 3) last-resort: readable file bundle listing.
   const html =
-    buildProjectPreviewHtml(files) || buildProjectBundleHtml(files, title);
+    buildProjectPreviewHtml(files) ||
+    (isReactProject(files) ? buildReactRuntimeHtml(files, title) : null) ||
+    buildProjectBundleHtml(files, title);
 
   const slug = randomSlug();
   const publishedUrl = `${window.location.origin}/s/${slug}`;
