@@ -903,6 +903,19 @@ const ChatMessage = ({
   );
   const [previewImageUrl, setPreviewImageUrl] = useState<string | null>(null);
 
+  // Project-level preview button for Coder replies (multi-file outputs).
+  const projectFiles = useMemo(
+    () => (role === "assistant" && !isStreaming ? extractProjectFiles(content) : []),
+    [role, isStreaming, content],
+  );
+  const hasProjectPreview = projectFiles.length >= 2;
+  const openProjectPreview = useCallback(() => {
+    if (!projectFiles.length) return;
+    const entry =
+      projectFiles.find((f) => /\.(html?|tsx|jsx)$/i.test(f.path)) || projectFiles[0];
+    setPreviewCode({ code: entry.content, lang: entry.lang });
+  }, [projectFiles]);
+
   // Other member's message → render on LEFT (assistant side) with avatar + name
   if (role === "user" && isOtherMember) {
     const initial = (senderName || "?")[0]?.toUpperCase();
@@ -1262,6 +1275,28 @@ const ChatMessage = ({
             })()}
 
             {/* Shopping product cards removed */}
+
+            {hasProjectPreview && (
+              <button
+                type="button"
+                onClick={openProjectPreview}
+                className="mb-3 group inline-flex items-center gap-3 w-full sm:w-auto rounded-2xl border border-border/60 bg-gradient-to-br from-[#0a0a0a] to-[#1a1a1a] px-4 py-3 text-left shadow-sm hover:shadow-md hover:border-[#5B8DEF]/60 transition-all"
+              >
+                <span className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-[#5B8DEF]/20 text-[#5B8DEF] group-hover:bg-[#5B8DEF] group-hover:text-white transition-colors">
+                  <Play className="w-4 h-4" fill="currentColor" />
+                </span>
+                <span className="flex-1 min-w-0">
+                  <span className="block text-[13px] font-bold text-white">
+                    معاينة المشروع
+                  </span>
+                  <span className="block text-[11px] text-white/60 truncate">
+                    {projectFiles.length} ملف · اضغط للتشغيل والاستعراض
+                  </span>
+                </span>
+              </button>
+            )}
+
+
 
             {isLearningMode && hasLearnCards(content) && !isStreaming ? (
               <div className="space-y-3">
