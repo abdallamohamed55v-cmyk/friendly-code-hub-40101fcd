@@ -5,6 +5,7 @@ import {
   buildProjectPreviewHtml,
   type ProjectFile,
 } from "./extractProjectFiles";
+import { buildReactRuntimeHtml, isReactProject } from "./buildReactRuntime";
 
 function esc(s: string): string {
   return s
