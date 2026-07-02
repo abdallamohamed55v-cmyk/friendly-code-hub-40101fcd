@@ -213,6 +213,14 @@ const SystemStatusPage = () => {
               />
               <button
                 type="button"
+                onClick={() => setShowSubscribe(false)}
+                disabled={submitting}
+                className="inline-flex items-center h-11 px-4 text-[13px] font-medium rounded-xl border border-border/70 text-foreground hover:bg-foreground/[0.06] disabled:opacity-60 transition"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
                 onClick={handleSubscribe}
                 disabled={submitting}
                 className="inline-flex items-center gap-2 h-11 px-5 text-[13px] font-medium rounded-xl bg-foreground text-background hover:opacity-90 disabled:opacity-60 transition"
