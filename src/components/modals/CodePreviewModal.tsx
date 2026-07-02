@@ -5,6 +5,7 @@ import {
   buildProjectPreviewHtml,
   type ProjectFile,
 } from "@/lib/extractProjectFiles";
+import { buildReactRuntimeHtml, isReactProject } from "@/lib/buildReactRuntime";
 
 interface CodePreviewModalProps {
   code: string;
