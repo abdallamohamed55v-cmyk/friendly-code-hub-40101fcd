@@ -1928,6 +1928,12 @@ const ChatPage = () => {
         navigate={zoneNavigate}
         handleModeChange={handleModeChange}
       />
+      {kimiCoderPrompt && (
+        <KimiCoderPanel
+          prompt={kimiCoderPrompt}
+          onClose={() => setKimiCoderPrompt(null)}
+        />
+      )}
     </>
   );
 };
