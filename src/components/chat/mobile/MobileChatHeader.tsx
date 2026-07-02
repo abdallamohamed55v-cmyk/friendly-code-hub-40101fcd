@@ -218,6 +218,25 @@ export default function MobileChatHeader({
           </div>
         ) : null}
 
+        <Link
+          to="/pricing"
+          aria-label="Get Plus"
+          className="relative inline-flex items-center gap-1.5 h-9 px-3 rounded-full text-[12.5px] font-bold shrink-0 bg-black text-white border border-black hover:bg-white hover:text-black transition active:scale-95"
+          style={{
+            boxShadow:
+              "inset 1px 1px 1px 0 rgba(255,255,255,0.18), inset -1px -1px 1px 0 rgba(255,255,255,0.08), 0 4px 12px rgba(0,0,0,0.18)",
+          }}
+        >
+          <span
+            aria-hidden
+            className="inline-flex items-center justify-center w-4 h-4 rounded-full bg-white text-black shrink-0"
+          >
+            <Star className="w-2.5 h-2.5 fill-current" strokeWidth={2.5} />
+          </span>
+          <span>Get Plus</span>
+        </Link>
+
+
         {hasConversation && (
           <div
             className={`liquid-glass-strong flex items-center h-10 rounded-full overflow-hidden transition-opacity duration-150 ${
