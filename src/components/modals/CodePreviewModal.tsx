@@ -5,6 +5,7 @@ import {
   buildProjectPreviewHtml,
   type ProjectFile,
 } from "@/lib/extractProjectFiles";
+import { buildReactRuntimeHtml, isReactProject } from "@/lib/buildReactRuntime";
 
 interface CodePreviewModalProps {
   code: string;
@@ -118,6 +119,7 @@ const CodePreviewModal = ({ code, lang, onClose, files, initialPath }: CodePrevi
   const previewHtml = useMemo(() => {
     const combined = buildProjectPreviewHtml(projectFiles);
     if (combined) return combined;
+    if (isReactProject(projectFiles)) return buildReactRuntimeHtml(projectFiles);
     return wrapCodeForPreview(selected.lang || lang, selected.content);
   }, [projectFiles, selected, lang]);
 
