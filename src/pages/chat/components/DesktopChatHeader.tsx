@@ -1,6 +1,6 @@
-import { Sparkles } from "lucide-react";
 import { MobileSidebarButton } from "@/components/shared/MobileSidebarButton";
 import { ChatOptionsDropdown } from "./ChatOptionsDropdown";
+import MegsyStar from "@/components/files/MegsyStar";
 
 interface DesktopChatHeaderProps {
   chatMode: "normal" | "learning" | "shopping" | "images" | "video" | "slides" | "slides-images" | "deep-research" | "operator" | "code";
