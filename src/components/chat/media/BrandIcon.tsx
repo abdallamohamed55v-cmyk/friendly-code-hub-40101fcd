@@ -86,20 +86,12 @@ export function BrandIcon({ name, provider, size = 28, variant = "color", classN
   if (Cmp.Color) {
     return <Cmp.Color size={size} className={className} />;
   }
-  // Fallback: use Avatar in the brand color but force a transparent background
-  // so the logo appears colored without any tile behind it.
-  if (Cmp.Avatar) {
-    return (
-      <Cmp.Avatar
-        size={size}
-        shape="square"
-        background="transparent"
-        className={className}
-      />
-    );
-  }
-  return <Cmp size={size} className={className} />;
+  // Fallback for brands without a Color mark (Flux, Runway, OpenAI, Midjourney,
+  // Ideogram, Bfl…): render the Mono glyph using the current text color so it's
+  // always visible on both light and dark themes — no background tile.
+  return <Cmp size={size} className={className} color="currentColor" />;
 }
+
 
 
 export function hasBrandIcon(name = "", provider = "") {
