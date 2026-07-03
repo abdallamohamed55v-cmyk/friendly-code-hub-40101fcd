@@ -79,15 +79,28 @@ interface Props {
 export function BrandIcon({ name, provider, size = 28, variant = "color", className }: Props) {
   const Cmp = pickBrand(name, provider);
   if (!Cmp) return null;
-  // Always render backgroundless. Prefer the brand's Color mark; fallback to base component.
   if (variant === "mono") {
     return <Cmp size={size} className={className} />;
   }
+  // Prefer the brand's Color mark (colored logo, no background).
   if (Cmp.Color) {
     return <Cmp.Color size={size} className={className} />;
   }
+  // Fallback: use Avatar in the brand color but force a transparent background
+  // so the logo appears colored without any tile behind it.
+  if (Cmp.Avatar) {
+    return (
+      <Cmp.Avatar
+        size={size}
+        shape="square"
+        background="transparent"
+        className={className}
+      />
+    );
+  }
   return <Cmp size={size} className={className} />;
 }
+
 
 export function hasBrandIcon(name = "", provider = "") {
   return !!pickBrand(name, provider);
