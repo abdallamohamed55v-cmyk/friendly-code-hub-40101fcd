@@ -92,18 +92,16 @@ export default function MediaModelPickerSheet({
                   }
                   className={glassModelMenu.card(active, "text-start rounded-[20px] active:scale-[0.98]")}
                 >
-                  <div className="aspect-[4/3] w-full rounded-xl overflow-hidden bg-foreground/[0.08] border border-foreground/10 mb-2">
-                    {m.thumbnailUrl ? (
+                  <div className="aspect-[4/3] w-full rounded-xl overflow-hidden mb-2 flex items-center justify-center">
+                    {hasBrandIcon(m.name, m.provider) ? (
+                      <BrandIcon name={m.name} provider={m.provider} size={64} variant="color" />
+                    ) : m.thumbnailUrl ? (
                       <img
                         src={m.thumbnailUrl}
                         alt={m.name}
                         loading="lazy"
                         className="w-full h-full object-cover"
                       />
-                    ) : hasBrandIcon(m.name, m.provider) ? (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <BrandIcon name={m.name} provider={m.provider} size={56} variant="avatar" />
-                      </div>
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-brand-action">
                         {mode === "video" ? (
@@ -117,7 +115,7 @@ export default function MediaModelPickerSheet({
                   <div className="flex items-start justify-between gap-2">
                     <div className="min-w-0 flex-1 flex items-center gap-1.5">
                       {hasBrandIcon(m.name, m.provider) && (
-                        <BrandIcon name={m.name} provider={m.provider} size={16} variant="mono" className="shrink-0 opacity-80" />
+                        <BrandIcon name={m.name} provider={m.provider} size={16} variant="color" className="shrink-0" />
                       )}
                       <div className="font-black text-sm truncate text-foreground">
                         {m.name}
