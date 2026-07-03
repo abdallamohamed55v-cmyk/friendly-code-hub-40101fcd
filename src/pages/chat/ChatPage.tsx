@@ -1571,13 +1571,15 @@ const ChatPage = () => {
           <div className="hidden md:block pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
             <video
               className="h-full w-full object-cover opacity-100"
-              src="/chat-desktop-bg.mp4"
               autoPlay
               loop
               muted
               playsInline
               preload="auto"
-            />
+            >
+              <source src="/chat-desktop-bg.webm" type="video/webm" />
+              <source src="/chat-desktop-bg.mp4" type="video/mp4" />
+            </video>
             <div
               className="absolute inset-0"
               style={{
