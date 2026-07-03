@@ -6,6 +6,8 @@ import { useDynamicModels } from "@/hooks/useModels";
 import { Check, Image as ImageIcon, Video as VideoIcon } from "lucide-react";
 import { glassModelMenu, glassModelMenuStyle } from "@/components/model-picker/glassModelMenuStyles";
 import { BrandIcon, hasBrandIcon } from "@/components/chat/media/BrandIcon";
+import megsyIcon from "@/assets/megsy-icon-transparent.png";
+
 
 export interface MediaModelChoice {
   slug: string;
@@ -103,19 +105,19 @@ export default function MediaModelPickerSheet({
                         className="w-full h-full object-cover"
                       />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center text-brand-action">
-                        {mode === "video" ? (
-                          <VideoIcon className="w-7 h-7" />
-                        ) : (
-                          <ImageIcon className="w-7 h-7" />
-                        )}
-                      </div>
+                      <img
+                        src={megsyIcon}
+                        alt="Megsy"
+                        className="w-14 h-14 object-contain"
+                      />
                     )}
                   </div>
                   <div className="flex items-start justify-between gap-2">
                     <div className="min-w-0 flex-1 flex items-center gap-1.5">
-                      {hasBrandIcon(m.name, m.provider) && (
+                      {hasBrandIcon(m.name, m.provider) ? (
                         <BrandIcon name={m.name} provider={m.provider} size={16} variant="color" className="shrink-0" />
+                      ) : (
+                        <img src={megsyIcon} alt="" className="w-4 h-4 shrink-0 object-contain" />
                       )}
                       <div className="font-black text-sm truncate text-foreground">
                         {m.name}
