@@ -1063,24 +1063,24 @@ const ChatMessage = ({
                           await handleCopy();
                           setDesktopMenuOpen(false);
                         }}
-                        className="w-full flex items-center justify-between gap-4 px-3 h-11 rounded-xl text-foreground hover:bg-foreground/[0.06] transition-colors"
+                        className="w-full flex items-center justify-between gap-4 px-3 h-11 rounded-xl text-white hover:bg-white/10 transition-colors"
                         role="menuitem"
                       >
-                        <span className="text-[15px] font-normal">Copy</span>
-                        <Copy className="w-[18px] h-[18px]" strokeWidth={1.8} />
+                        <span className="text-[15px] font-normal text-white">Copy</span>
+                        <Copy className="w-[18px] h-[18px] text-white" strokeWidth={1.8} />
                       </button>
-                      <div className="h-px bg-foreground/10 mx-2" />
+                      <div className="h-px bg-white/10 mx-2" />
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
                           handleEditAction();
                           setDesktopMenuOpen(false);
                         }}
-                        className="w-full flex items-center justify-between gap-4 px-3 h-11 rounded-xl text-foreground hover:bg-foreground/[0.06] transition-colors"
+                        className="w-full flex items-center justify-between gap-4 px-3 h-11 rounded-xl text-white hover:bg-white/10 transition-colors"
                         role="menuitem"
                       >
-                        <span className="text-[15px] font-normal">Edit</span>
-                        <Pencil className="w-[18px] h-[18px]" strokeWidth={1.8} />
+                        <span className="text-[15px] font-normal text-white">Edit</span>
+                        <Pencil className="w-[18px] h-[18px] text-white" strokeWidth={1.8} />
                       </button>
                     </PopoverContent>
                   </Popover>
