@@ -114,8 +114,10 @@ export default function MediaModelPickerSheet({
                   </div>
                   <div className="flex items-start justify-between gap-2">
                     <div className="min-w-0 flex-1 flex items-center gap-1.5">
-                      {hasBrandIcon(m.name, m.provider) && (
+                      {hasBrandIcon(m.name, m.provider) ? (
                         <BrandIcon name={m.name} provider={m.provider} size={16} variant="color" className="shrink-0" />
+                      ) : (
+                        <img src={megsyIcon} alt="" className="w-4 h-4 shrink-0 object-contain" />
                       )}
                       <div className="font-black text-sm truncate text-foreground">
                         {m.name}
