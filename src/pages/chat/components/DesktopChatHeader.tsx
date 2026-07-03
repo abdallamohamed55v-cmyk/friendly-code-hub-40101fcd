@@ -71,7 +71,7 @@ export function DesktopChatHeader(props: DesktopChatHeaderProps) {
               "inset 1px 1px 1px 0 rgba(255,255,255,0.18), inset -1px -1px 1px 0 rgba(255,255,255,0.08), 0 4px 12px rgba(0,0,0,0.18)",
           }}
         >
-          <MegsyStar size={16} static className="text-black shrink-0" />
+          <MegsyStar size={16} static className="text-white shrink-0" />
 
           <span>Get Plus</span>
         </button>
