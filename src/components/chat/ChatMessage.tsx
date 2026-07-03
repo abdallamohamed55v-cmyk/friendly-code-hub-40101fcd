@@ -533,46 +533,6 @@ const ReactionsRow = ({
           <span className="text-[11px] font-medium">{count}</span>
         </button>
       ))}
-      <div className="relative">
-        <button
-          onClick={() => setPickerOpen((v) => !v)}
-          className="px-1.5 py-0.5 rounded-full text-[13px] bg-accent/20 hover:bg-accent/40 border border-border/30 text-foreground/60 transition-colors"
-          aria-label="Add reaction"
-        >
-          ＋
-        </button>
-        <AnimatePresence>
-          {pickerOpen && (
-            <>
-              <button
-                className="fixed inset-0 z-40 cursor-default"
-                onClick={() => setPickerOpen(false)}
-                aria-label="Close"
-              />
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9, y: 4 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9, y: 4 }}
-                transition={{ duration: 0.15 }}
-                className={`absolute z-50 ${align === "right" ? "right-0" : "left-0"} bottom-full mb-1 flex gap-1 p-1.5 rounded-2xl liquid-glass border border-border/30`}
-              >
-                {REACTION_EMOJIS.map((e) => (
-                  <button
-                    key={e}
-                    onClick={() => {
-                      onToggle(messageId, e);
-                      setPickerOpen(false);
-                    }}
-                    className="w-8 h-8 rounded-full hover:bg-accent/50 flex items-center justify-center text-[18px] transition-colors"
-                  >
-                    {e}
-                  </button>
-                ))}
-              </motion.div>
-            </>
-          )}
-        </AnimatePresence>
-      </div>
     </div>
   );
 };
