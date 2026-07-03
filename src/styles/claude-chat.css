@@ -231,6 +231,7 @@
 
   /* Main chat surface */
   [data-skin="claude"] .chat-surface-dark { background: #000 !important; }
+  [data-skin="claude"] .chat-surface-dark[data-chat-main="true"] { background: transparent !important; }
 
   /* Assistant prose — Claude serif */
   [data-skin="claude"] .prose-chat,

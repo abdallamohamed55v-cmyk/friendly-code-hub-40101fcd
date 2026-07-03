@@ -1564,20 +1564,22 @@ const ChatPage = () => {
         </aside>
 
         <div
-          className="theme-fixed chat-surface-dark flex-1 flex flex-col min-w-0 relative overflow-hidden bg-black text-foreground md:!text-[hsl(var(--brand-parchment))]"
-          style={{ backgroundColor: "#000" }}
+          data-chat-main="true"
+          className="theme-fixed chat-surface-dark flex-1 flex flex-col min-w-0 relative overflow-hidden max-md:bg-black text-foreground md:!text-[hsl(var(--brand-parchment))]"
         >
           {/* Background video — desktop only, always visible behind chat */}
           <div className="hidden md:block pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
             <video
-              className="h-full w-full object-cover"
-              src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260525_052706_d2e390fd-1846-4fe7-a4d8-8d2f1c875358.mp4"
+              className="h-full w-full object-cover opacity-100"
               autoPlay
               loop
               muted
               playsInline
               preload="auto"
-            />
+            >
+              <source src="/chat-desktop-bg.webm" type="video/webm" />
+              <source src="/chat-desktop-bg.mp4" type="video/mp4" />
+            </video>
             <div
               className="absolute inset-0"
               style={{

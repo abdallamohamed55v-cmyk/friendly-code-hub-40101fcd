@@ -58,7 +58,7 @@ export const ChatMessagesArea = forwardRef<HTMLDivElement, ChatMessagesAreaProps
     const isEmpty = !loadingMessages && messages.length === 0;
     return (
       <div
-        className={`flex-1 min-h-0 relative bg-black md:bg-transparent ${isEmpty ? "overflow-hidden" : "overflow-y-auto"}`}
+        className={`flex-1 min-h-0 relative max-md:bg-black md:bg-transparent ${isEmpty ? "overflow-hidden" : "overflow-y-auto"}`}
         ref={messagesContainerRef}
         onScroll={handleScroll}
         role="log"
