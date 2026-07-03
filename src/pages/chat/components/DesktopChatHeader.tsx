@@ -1,6 +1,6 @@
-import { Sparkles } from "lucide-react";
 import { MobileSidebarButton } from "@/components/shared/MobileSidebarButton";
 import { ChatOptionsDropdown } from "./ChatOptionsDropdown";
+import MegsyStar from "@/components/files/MegsyStar";
 
 interface DesktopChatHeaderProps {
   chatMode: "normal" | "learning" | "shopping" | "images" | "video" | "slides" | "slides-images" | "deep-research" | "operator" | "code";
@@ -71,12 +71,8 @@ export function DesktopChatHeader(props: DesktopChatHeaderProps) {
               "inset 1px 1px 1px 0 rgba(255,255,255,0.18), inset -1px -1px 1px 0 rgba(255,255,255,0.08), 0 4px 12px rgba(0,0,0,0.18)",
           }}
         >
-          <span
-            aria-hidden
-            className="inline-flex items-center justify-center w-4 h-4 rounded-full bg-white text-black shrink-0"
-          >
-            <Sparkles className="w-3 h-3" strokeWidth={2.5} />
-          </span>
+          <MegsyStar size={16} static className="text-white shrink-0" />
+
           <span>Get Plus</span>
         </button>
 
