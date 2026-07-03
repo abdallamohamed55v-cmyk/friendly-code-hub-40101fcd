@@ -105,13 +105,11 @@ export default function MediaModelPickerSheet({
                         className="w-full h-full object-cover"
                       />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center text-brand-action">
-                        {mode === "video" ? (
-                          <VideoIcon className="w-7 h-7" />
-                        ) : (
-                          <ImageIcon className="w-7 h-7" />
-                        )}
-                      </div>
+                      <img
+                        src={megsyIcon}
+                        alt="Megsy"
+                        className="w-14 h-14 object-contain"
+                      />
                     )}
                   </div>
                   <div className="flex items-start justify-between gap-2">
