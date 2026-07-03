@@ -1567,27 +1567,25 @@ const ChatPage = () => {
           className="theme-fixed chat-surface-dark flex-1 flex flex-col min-w-0 relative overflow-hidden bg-black text-foreground md:!text-[hsl(var(--brand-parchment))]"
           style={{ backgroundColor: "#000" }}
         >
-          {/* Background video shown before the first message — desktop only */}
-          {showDesktopEmptyVideo && (
-            <div className="hidden md:block pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
-              <video
-                className="h-full w-full object-cover opacity-80"
-                src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260525_052706_d2e390fd-1846-4fe7-a4d8-8d2f1c875358.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="auto"
-              />
-              <div
-                className="absolute inset-0"
-                style={{
-                  background:
-                    "linear-gradient(180deg, hsl(var(--brand-ink) / 0.24), hsl(var(--brand-ink) / 0.34)), hsl(var(--brand-ink) / 0.10)",
-                }}
-              />
-            </div>
-          )}
+          {/* Background video — desktop only, always visible behind chat */}
+          <div className="hidden md:block pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
+            <video
+              className="h-full w-full object-cover"
+              src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260525_052706_d2e390fd-1846-4fe7-a4d8-8d2f1c875358.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+            />
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(180deg, hsl(var(--brand-ink) / 0.35), hsl(var(--brand-ink) / 0.55))",
+              }}
+            />
+          </div>
 
           {/* Mobile drawer sidebar */}
           <div className="md:hidden">
