@@ -507,7 +507,7 @@ const ReactionsRow = ({
   messageId?: string;
   align: "left" | "right";
 }) => {
-  const [pickerOpen, setPickerOpen] = useState(false);
+  
   const grouped = useMemo(() => {
     const map: Record<string, { count: number; mine: boolean }> = {};
     for (const r of reactions) {
